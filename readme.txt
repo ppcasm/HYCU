@@ -51,18 +51,18 @@ side of the loader, and the usage goes as follows:
 
 <HYCU.exe> <COM_PORT> <BAUD> <UPLOAD_ADDRESS> <FILE_NAME>
 
-At this point, you should generally see some indication lights on the MCU letting you know that
-the code is uploading, and the HyperScan should give you a proper upload address, and size, and
-the status indicator should read "DONE" when it's finished.
+At this point, you should generally see some indication lights on the MCU letting you know
+that the code is uploading, and the HyperScan should give you a proper upload address, and
+size, and the status indicator should read "DONE" when it's finished.
 
 Notes on porting MCU code to other platforms:
 
-When writing the code for the MCU, I've tried to keep the wiring so that it matches up with the
-MCU I2C port on boards that happen to have one. The controller interface appears to use I2C, and
-I plan on adding I2C support later on, and so this would allow that upgrade to happen 
-transparently through software. An example of this is that pin 20 on Arduino is also shared with
-the "SDA" signal. It's being used as a GPIO on pin 20 for now, but later on with the update it 
-could then become the I2C SDA signaling. 
+When writing the code for the MCU, I've tried to keep the wiring so that it matches up with
+the MCU I2C port on boards that happen to have one. The controller interface appears to use 
+I2C, and I plan on adding I2C support later on, and so this would allow that upgrade to happen 
+transparently through software. An example of this is that pin 20 on Arduino is also shared 
+with the "SDA" signal. It's being used as a GPIO on pin 20 for now, but later on with the 
+update it could then become the I2C SDA signaling. 
  
 
 Controller Male Connector Pinout:
