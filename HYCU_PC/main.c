@@ -1,5 +1,5 @@
 /*
-HYCU - HYperscan Code Uploader by: ppcasm (ppcasm@gmail.com) (PC side)
+
 */
 
 #include <stdio.h>
@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
     sprintf(file_buf, "\\\\.\\%s", comz);
     
     init_serial(comz, baudz);
+    fp = fopen(file_buf, "wb+");
     
     printf("Upload Address: 0x%x\n", upload_address);
     
@@ -67,6 +68,7 @@ int main(int argc, char *argv[])
     }
     
     fclose(filez);
+    fclose(fp);
     
   return;  
 }
@@ -86,10 +88,8 @@ void init_serial(char *comz, char *baudz)
 
 void serial_write(const char *filename, unsigned char bytez)
 {
-    fp = fopen(filename, "wb+");
     fprintf(fp, "%c", bytez);
-    fclose(fp);
-    
+    fflush(fp);
 }
 
 
