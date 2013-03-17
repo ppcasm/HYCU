@@ -7,9 +7,9 @@ Intro:
 This tool constists of 3 parts in order to make the testing platform more transparent. The 
 3 parts are as listed:
 
-1: PC Side
-2: MCU Side
-3: HyperScan Side
+1: PC Side (HYCU_PC)
+2: MCU Side (HYCU_MCU)
+3: HyperScan Side (HYCU_HS)
 
 The idea here is that the PC side, and the HyperScan side interfacing remains the same in that
 it sends out data through serial (usually USB serial) from the PC side to the MCU, and the 
