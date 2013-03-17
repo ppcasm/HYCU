@@ -1,0 +1,6 @@
+// SUNPLUS  S+core IDE generated assembly include file.
+#ifndef HYCU_RESOURCE_INC__26500_6334__INCLUDED_
+#define HYCU_RESOURCE_INC__26500_6334__INCLUDED_
+
+
+#endif //HYCU_RESOURCE_INC__26500_6334__INCLUDED_

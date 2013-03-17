@@ -1,0 +1,12 @@
+/*	Created by S+core IDE	*/
+
+
+INPUT("Debug\HYCU_startup.o")
+INPUT("Debug\main.o")
+INPUT("Debug\libgloss.o")
+
+SECTIONS
+{
+
+}
+

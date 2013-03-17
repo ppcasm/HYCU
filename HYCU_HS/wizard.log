@@ -1,0 +1,25 @@
+2013-03-12	03:48:41
+
+Actions in the wizard:
+
+Add file: main.c to project.
+
+Add file: libgloss.c to project.
+
+Assign startup code: SPG290_startup.s for project.
+
+Set c flags in debug mode: -mscore7 -mel -g -Wall.
+
+Set asm flags in debug mode: -Wa,-gdwarf-2  -x assembler-with-cpp.
+
+Set Ld flags in debug mode: -T$(LDSCRIPT)   -lm -lc -lgcc
+
+Set C flags in release mode: -mscore7 -mel -O2 -Wall
+
+Set asm flags in release mode: -x assembler-with-cpp
+
+Set Ld flags in release mode: -T$(LDSCRIPT)   -lm -lc -lgcc
+
+Assign output EXECUTIVE.
+
+Use c++ configuration: FALSE.
