@@ -27,7 +27,9 @@ unsigned short *fb = (unsigned short *)0;
 
 void video_init(void);
 void video_drawbg(void);
+unsigned long calc_chksum32(unsigned char *pointz, unsigned long codesize);
 void video_hexdump(int cx, int cy, unsigned long x, unsigned short colorzz);
 void video_print(int x, int y, char *text, unsigned short colorz);
 void video_clearscreen(void);
 unsigned char recv_byte(void);
+

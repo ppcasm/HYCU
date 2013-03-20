@@ -11,13 +11,15 @@ int main()
 {
 	unsigned long codesize = 0;
 	unsigned long upload_address = 0;
+	unsigned long chksum32_pc = 0; //PC calculated checksum
+	unsigned long chksum32_hs = 0; //HS calculated checksum
  
-	int i = 0;
+	unsigned long i = 0;
 	
-	int byte0 = 0;
-	int byte1 = 0;
-	int byte2 = 0;
-	int byte3 = 0;
+	unsigned char byte0 = 0;
+	unsigned char byte1 = 0;
+	unsigned char byte2 = 0;
+	unsigned char byte3 = 0;
 	
 	video_init();
     video_drawbg();
@@ -55,14 +57,49 @@ int main()
     	pointz[i]=recv_byte();
     }
 	
-	video_print((640/8)/2-sizeof("DONE")/2, (480/16)/2+7, "DONE", 0xffff);
+	//Calculate HS checksum
+	chksum32_hs = calc_chksum32(pointz, codesize);
 	
-	for(;;)
+	//Get PC calculated checksum
+	byte0 = recv_byte();
+    byte1 = recv_byte();
+    byte2 = recv_byte();
+    byte3 = recv_byte();
+	
+	chksum32_pc = byte0<<24|byte1<<16|byte2<<8|byte3;
+	
+	//Compare
+	if(chksum32_pc==chksum32_hs)
 	{
-		entry_point();
+		video_print((640/8)/2-sizeof("DONE")/2, (480/16)/2+7, "DONE", 0xffff);
+		
+		for(;;)
+	    {
+	    	entry_point();
+	    }
 	}
 	
+	else
+	{
+		video_print((640/8)/2-sizeof("FAILED!")/2, (480/16)/2+7, "FAILED!", 0xffff);
+		video_print((640/8)/2-sizeof("CHKSUM ERROR:")/2, (480/16)/2+8, "CHKSUM ERROR:", 0xffff);
+		video_hexdump((640/8)/2-sizeof("0xffffffff")/2, (480/16)/2+9, chksum32_hs, 0xffff);
+	}
+	
+	
   return 0;
+}
+
+unsigned long calc_chksum32(unsigned char *pointz, unsigned long codesize)
+{
+	int i = 0;
+	int chksum32 = 0;
+	for(i=0;i<codesize;i++)
+	{
+		chksum32+=pointz[i];
+	}
+	
+  return chksum32;
 }
 
 void video_print(int x, int y, char *text, unsigned short colorzz)

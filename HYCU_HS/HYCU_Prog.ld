@@ -13,7 +13,7 @@ SECTIONS
     .stack         0xa0fffffc :{ _stack = .; *(.stack) }
   /* S+core IDE writed LD file end */
   /* Read-only sections, merged into text segment: */
-  . = 0xA00901fc;
+  . = 0xA00901FC;
   .interp         : { *(.interp) }
   .hash           : { *(.hash) }
   .dynsym         : { *(.dynsym) }

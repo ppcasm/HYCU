@@ -17,24 +17,24 @@ void reset_hyperscan(void);
 void send_byte(unsigned char bytez);
 
 int led = 13; //Status
-int clk = 22; //Clock
-int data = 37; //Data
-int reset = 38; //Reset
-int enable = 36; //Enable
+int clk = 23; //Clock
+int data = 36; //Data
+int reset = 35; //Reset
+//int enable = 36; //Enable
 
 void setup() 
 {                
-  pinMode(led, OUTPUT);   
+  //pinMode(led, OUTPUT);   
   pinMode(clk, OUTPUT);
   pinMode(data, OUTPUT);
   pinMode(reset, OUTPUT);
-  pinMode(enable, OUTPUT);
+  //pinMode(enable, OUTPUT);
     
-  digitalWrite(led, LOW);
+  //digitalWrite(led, LOW);
   digitalWrite(clk, LOW);
   digitalWrite(data, LOW);
-  digitalWrite(enable, LOW);
-  digitalWrite(reset, HIGH);
+  //digitalWrite(enable, LOW);
+  //digitalWrite(reset, HIGH);
   
   Serial.begin(115200);
  
@@ -42,11 +42,16 @@ void setup()
 
 void loop()
 {
+  reset_hyperscan();
+  unsigned char testz = 0;
   for(;;)
   {
     if (Serial.available() > 0)
     {
-      send_byte(Serial.read());
+      testz = Serial.read();
+      noInterrupts();
+      send_byte(testz);
+      interrupts();
     }
   }
 
@@ -67,7 +72,7 @@ void reset_hyperscan()
 }
 
 //Send 8-bit value to HyperScan over raw wire
-void send_byte(unsigned char byte)
+void send_byte(unsigned char bytez)
 {
   /*
   Break down byte into wire HIGH/LOW. If the data bit is 0 then pull clock
@@ -80,7 +85,7 @@ void send_byte(unsigned char byte)
   {
 
      
-     if(byte & (1<<x))
+     if(bytez & (1<<x))
      {
     	digitalWrite(data, HIGH);
     	digitalWrite(clk, HIGH);
@@ -91,6 +96,7 @@ void send_byte(unsigned char byte)
     	digitalWrite(data, LOW);
     	digitalWrite(clk, HIGH);
     }
+        digitalWrite(data, LOW);
         digitalWrite(clk, LOW);
     }
   

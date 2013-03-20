@@ -1,6 +1,6 @@
 ####################################################################################################
 #
-#	Created by S+core IDE V2.6.1		03:53:39	03/17/13
+#	Created by S+core IDE V2.6.1		04:27:16	03/20/13
 #
 ####################################################################################################
 
@@ -8,7 +8,7 @@ OUTDIR	= Debug
 APPDIR	= C:\Sunplus\S_CORE~1.1
 
 TOOLDIR	= C:\Sunplus\S_CORE~1.1\gnu\bin
-INCLUDES =  -I"C:/Users/Administrator/Desktop/HYCU/HYCU_HS/"
+INCLUDES =  -I"C:/Users/Administrator/Documents/GitHub/HYCU/HYCU_HS/"
 LIBFOLDER = 
 
 CC	= "$(TOOLDIR)\score-elf-gcc"
@@ -21,7 +21,7 @@ RM	= "$(TOOLDIR)\rm"
 
 OBJCOPY	= "$(TOOLDIR)\score-elf-objcopy"
 OBJDUMP	= "$(TOOLDIR)\score-elf-objdump"
-LDSCRIPT	= "C:\Users\Administrator\Desktop\HYCU\HYCU_HS\HYCU_Prog.ld"
+LDSCRIPT	= "C:\Users\Administrator\Documents\GitHub\HYCU\HYCU_HS\HYCU_Prog.ld"
 
 CCDEFFLAG	= -mscore7 -mel -g -Wall
 CCADDFLAG	= 
@@ -42,17 +42,17 @@ OBJFILES	=\
 	"$(OUTDIR)\main.o"\
 	"$(OUTDIR)\libgloss.o"
 
-"$(OUTDIR)\libgloss.o" "$(OUTDIR)\libgloss.d": "C:\Users\Administrator\Desktop\HYCU\HYCU_HS\libgloss.c"
+"$(OUTDIR)\libgloss.o" "$(OUTDIR)\libgloss.d": "C:\Users\Administrator\Documents\GitHub\HYCU\HYCU_HS\libgloss.c"
 	@echo libgloss.c
-	@$(CC) -c $(CCDEFFLAG) $(CCADDFLAG) -B $(TOOLDIR) $(INCLUDES) -MMD -MP -MF"$(OUTDIR)\libgloss.d" -MT"$(OUTDIR)\libgloss.d" -o "$(OUTDIR)\libgloss.o" "C:\Users\Administrator\Desktop\HYCU\HYCU_HS\libgloss.c" 
+	@$(CC) -c $(CCDEFFLAG) $(CCADDFLAG) -B $(TOOLDIR) $(INCLUDES) -MMD -MP -MF"$(OUTDIR)\libgloss.d" -MT"$(OUTDIR)\libgloss.d" -o "$(OUTDIR)\libgloss.o" "C:\Users\Administrator\Documents\GitHub\HYCU\HYCU_HS\libgloss.c" 
 
-"$(OUTDIR)\main.o" "$(OUTDIR)\main.d": "C:\Users\Administrator\Desktop\HYCU\HYCU_HS\main.c"
+"$(OUTDIR)\main.o" "$(OUTDIR)\main.d": "C:\Users\Administrator\Documents\GitHub\HYCU\HYCU_HS\main.c"
 	@echo main.c
-	@$(CC) -c $(CCDEFFLAG) $(CCADDFLAG) -B $(TOOLDIR) $(INCLUDES) -MMD -MP -MF"$(OUTDIR)\main.d" -MT"$(OUTDIR)\main.d" -o "$(OUTDIR)\main.o" "C:\Users\Administrator\Desktop\HYCU\HYCU_HS\main.c" 
+	@$(CC) -c $(CCDEFFLAG) $(CCADDFLAG) -B $(TOOLDIR) $(INCLUDES) -MMD -MP -MF"$(OUTDIR)\main.d" -MT"$(OUTDIR)\main.d" -o "$(OUTDIR)\main.o" "C:\Users\Administrator\Documents\GitHub\HYCU\HYCU_HS\main.c" 
 
-"$(OUTDIR)\HYCU_startup.o" "$(OUTDIR)\HYCU_startup.d": "C:\Users\Administrator\Desktop\HYCU\HYCU_HS\HYCU_startup.s"
+"$(OUTDIR)\HYCU_startup.o" "$(OUTDIR)\HYCU_startup.d": "C:\Users\Administrator\Documents\GitHub\HYCU\HYCU_HS\HYCU_startup.s"
 	@echo HYCU_startup.s
-	@$(CC) -c $(CCDEFFLAG) $(CCADDFLAG) -B $(TOOLDIR) $(INCLUDES) $(ASDEFFLAG) $(ASADDFLAG) -MMD -MP -MF"$(OUTDIR)\HYCU_startup.d" -MT"$(OUTDIR)\HYCU_startup.d" -o "$(OUTDIR)\HYCU_startup.o" "C:\Users\Administrator\Desktop\HYCU\HYCU_HS\HYCU_startup.s" 
+	@$(CC) -c $(CCDEFFLAG) $(CCADDFLAG) -B $(TOOLDIR) $(INCLUDES) $(ASDEFFLAG) $(ASADDFLAG) -MMD -MP -MF"$(OUTDIR)\HYCU_startup.d" -MT"$(OUTDIR)\HYCU_startup.d" -o "$(OUTDIR)\HYCU_startup.o" "C:\Users\Administrator\Documents\GitHub\HYCU\HYCU_HS\HYCU_startup.s" 
 
 
 all : "$(OUTDIR)" $(BINFILE)
@@ -62,7 +62,7 @@ all : "$(OUTDIR)" $(BINFILE)
 
 LINKLIB	= 
 
-$(BINFILE) : $(RESFILES) $(OBJFILES) $(LINKLIB) $(LDSCRIPT) "C:\Users\Administrator\Desktop\HYCU\HYCU_HS\Resource.h"
+$(BINFILE) : $(RESFILES) $(OBJFILES) $(LINKLIB) $(LDSCRIPT) "C:\Users\Administrator\Documents\GitHub\HYCU\HYCU_HS\Resource.h"
 			@echo linking...
 			@$(CC) $(CCDEFFLAG) $(CCADDFLAG) -B$(TOOLDIR) "Obj.lst" -o $(BINFILE) "Lib.lst" $(LIBFOLDER) $(LDDEFFLAG) $(LDADDFLAG)
 			@$(OBJCOPY) -O binary $@ $@.bin
