@@ -19,7 +19,7 @@ void send_byte(unsigned char bytez);
 int led = 13; //Status
 int clk = 23; //Clock
 int data = 36; //Data
-int reset = 35; //Reset
+int reset = 22; //Reset
 //int enable = 36; //Enable
 
 void setup() 

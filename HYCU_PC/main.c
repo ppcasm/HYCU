@@ -1,4 +1,5 @@
 /*
+HYCU - HYperscan Code Uploader by: ppcasm (ppcasm@gmail.com) (PC side)
 
 */
 
@@ -26,6 +27,8 @@ int main(int argc, char *argv[])
     }
     
     unsigned long i = 0;
+    unsigned long cur_num = 0;
+    unsigned long prev_num = 0;
     char *comz = argv[1];
     char *baudz = argv[2];
     int sizes = strlen(comz)+strlen("\\\\.\\");
@@ -33,6 +36,7 @@ int main(int argc, char *argv[])
     unsigned long filesize = 0;
     unsigned long chksum32 = 0;
     char file_buf[sizes];
+    
     sprintf(file_buf, "\\\\.\\%s", comz);
     
     init_serial(comz, baudz);
@@ -70,14 +74,28 @@ int main(int argc, char *argv[])
     delayz(DLY);
     
     //Upload file
+    printf("LOADING: %d%%\n", 0);
+    
     for(i=0;i<filesize;i++)
-    {                    
+    {  
        serial_write(file_buf, savedfile[i]);
+       
+       cur_num = (((i*100)/filesize));
+       if(!(cur_num%10))
+       {    
+            if(prev_num!=cur_num)
+            {
+            prev_num = ((i*100)/filesize);
+            printf("LOADING: %d%%\n", ((i*100)/filesize));
+            }
+       }
     }
+    
+    printf("LOADING: %d%%\n\n", 100);
     
     //Calculate Checksum
     chksum32 = chksum(savedfile, filesize);
-    printf("CHKSUM: 0x%08x\n", chksum32);
+    printf("CHKSUM: 0x%08x\n\n", chksum32);
      
     //Send Checksum
     for(i=0;i<0x4;i++)
@@ -87,6 +105,9 @@ int main(int argc, char *argv[])
     
     //Give time to draw
     delayz(DLY);
+    
+    //serial_write(file_buf, 0);
+    
     
     printf("DONE\n");
     fclose(filez);
