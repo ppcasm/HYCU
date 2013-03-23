@@ -82,8 +82,11 @@ int main()
 	else
 	{
 		video_print((640/8)/2-sizeof("FAILED!")/2, (480/16)/2+7, "FAILED!", 0xffff);
-		video_print((640/8)/2-sizeof("CHKSUM ERROR:")/2, (480/16)/2+8, "CHKSUM ERROR:", 0xffff);
-		video_hexdump((640/8)/2-sizeof("0xffffffff")/2, (480/16)/2+9, chksum32_hs, 0xffff);
+		video_print((640/8)/2-sizeof("!CHKSUM ERROR!")/2, (480/16)/2+8, "!CHKSUM ERROR!", 0xffff);
+		video_print((640/8)/2-sizeof("HyperScan Checksum:")/2, (480/16)/2+9, "HyperScan Checksum:", 0xffff);
+		video_hexdump((640/8)/2-sizeof("0xffffffff")/2, (480/16)/2+10, chksum32_hs, 0xffff);
+		video_print((640/8)/2-sizeof("PC Checksum:")/2, (480/16)/2+11, "PC Checksum:", 0xffff);
+		video_hexdump((640/8)/2-sizeof("0xffffffff")/2, (480/16)/2+12, chksum32_pc, 0xffff);
 	}
 	
 	

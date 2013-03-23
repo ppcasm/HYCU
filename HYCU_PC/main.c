@@ -4,7 +4,8 @@ HYCU - HYperscan Code Uploader by: ppcasm (ppcasm@gmail.com) (PC side)
 */
 
 #include <stdio.h>
-#define DLY 200000
+#define DLYDRW 200000 //Delay for drawing
+#define DLYSND 200000 //Delay for sending
 void delayz(int time);
 void init_serial(char *comz, char *baudz);
 unsigned long chksum(unsigned char *chkbuf, unsigned long sizez);
@@ -41,6 +42,12 @@ int main(int argc, char *argv[])
     
     init_serial(comz, baudz);
     fp = fopen(file_buf, "wb+");
+    if(fp==NULL)
+    {
+         printf("Could not open serial device <%s>\n", argv[1]);
+         fclose(filez);
+         exit(0);
+    }
     
     printf("Upload Address: 0x%x\n", upload_address);
     
@@ -62,7 +69,7 @@ int main(int argc, char *argv[])
     }
     
     //Give time to draw
-    delayz(DLY);
+    delayz(DLYDRW);
     
     //Upload file size
     for(i=0;i<0x4;i++)
@@ -71,10 +78,10 @@ int main(int argc, char *argv[])
     }
     
     //Give time to draw
-    delayz(DLY);
+    delayz(DLYDRW);
     
     //Upload file
-    printf("LOADING: %d%%\n", 0);
+    printf("\nLOADING: %d%%\n", 0);
     
     for(i=0;i<filesize;i++)
     {  
@@ -85,8 +92,8 @@ int main(int argc, char *argv[])
        {    
             if(prev_num!=cur_num)
             {
-            prev_num = ((i*100)/filesize);
-            printf("LOADING: %d%%\n", ((i*100)/filesize));
+                 prev_num = ((i*100)/filesize);
+                 printf("LOADING: %d%%\n", cur_num);
             }
        }
     }
@@ -96,7 +103,7 @@ int main(int argc, char *argv[])
     //Calculate Checksum
     chksum32 = chksum(savedfile, filesize);
     printf("CHKSUM: 0x%08x\n\n", chksum32);
-     
+    
     //Send Checksum
     for(i=0;i<0x4;i++)
     {
@@ -104,7 +111,7 @@ int main(int argc, char *argv[])
     }
     
     //Give time to draw
-    delayz(DLY);
+    delayz(DLYDRW);
     
     //serial_write(file_buf, 0);
     
@@ -133,7 +140,7 @@ void serial_write(const char *filename, unsigned char bytez)
 {
     
     fprintf(fp, "%c", bytez);
-    delayz(DLY);
+    delayz(DLYSND);
     fflush(fp);
 }
 

@@ -17,10 +17,10 @@ void reset_hyperscan(void);
 void send_byte(unsigned char bytez);
 
 int led = 13; //Status
-int clk = 23; //Clock
-int data = 36; //Data
+int clk = 37; //Clock
+int data = 22; //Data
 int reset = 22; //Reset
-//int enable = 36; //Enable
+int enable = 30; //Enable
 
 void setup() 
 {                
@@ -42,7 +42,7 @@ void setup()
 
 void loop()
 {
-  reset_hyperscan();
+  //reset_hyperscan();
   unsigned char testz = 0;
   for(;;)
   {
