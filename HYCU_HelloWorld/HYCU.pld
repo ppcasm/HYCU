@@ -1,0 +1,44 @@
+# Begin Project
+# Begin SubItem "HYCU Pre-Load Program"
+
+# Begin Group "Probe Exception"
+#PROP Default_Filter = 
+
+# Begin Source File
+SOURCE=.\Probe\probe_dsr_general_s7_eb.hex8
+# End Source File
+# End Group
+# Begin Group "Command"
+#PROP Default_Filter = 
+
+# Begin Source File
+SOURCE=.\HYCU.cmd
+# End Source File
+# End Group
+# Begin Group "Additional Program"
+#PROP Default_Filter = 
+
+# End Group
+# Begin Group "Main Program"
+#PROP Default_Filter = 
+
+# Begin Source File
+SOURCE=.\Debug\HYCU.elf
+# End Source File
+# End Group
+## Begin Group "Main Program for Debug"
+## PROP Default_Filter = 
+
+## Begin Source File
+#SOURCE=.\Debug\HYCU.elf
+## End Source File
+## End Group
+## Begin Group "Main Program for Release"
+## PROP Default_Filter = 
+
+## Begin Source File
+#SOURCE=.\Release\HYCU.elf
+## End Source File
+## End Group
+# End SubItem
+# End Project
