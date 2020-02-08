@@ -16,11 +16,20 @@ GND - GND (Brown)
 void reset_hyperscan(void);
 void send_byte(unsigned char bytez);
 
+/*Arduino Mega
 int led = 13; //Status
 int clk = 37; //Clock
 int data = 22; //Data
 int reset = 22; //Reset
 int enable = 30; //Enable
+*/
+
+//Arduino Uno
+int led = 13; //Status
+int clk = 19; //Clock
+int data = 18; //Data
+int reset = 2; //Reset
+int enable = 3; //Enable
 
 void setup() 
 {                
@@ -35,8 +44,10 @@ void setup()
   digitalWrite(data, LOW);
   //digitalWrite(enable, LOW);
   //digitalWrite(reset, HIGH);
-  
-  Serial.begin(115200);
+
+  //Bug in Arduino UNO forces max rate to 9600 baud
+  //See: https://forum.arduino.cc/index.php?topic=512209.0
+  Serial.begin(2400);
  
 }
 
@@ -102,4 +113,3 @@ void send_byte(unsigned char bytez)
   
   return;
 }
-
