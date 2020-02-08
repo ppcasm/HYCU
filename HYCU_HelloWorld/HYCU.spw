@@ -1,0 +1,13 @@
+# Sunplus S+core IDE Workspace File, Format version  V2.6.1
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+Body_Name = "SPG290"
+Probe_Name = "Auto"
+Active_Project = "HYCU"
+
+####################################################################################################
+
+Project: "HYCU" = ".\HYCU.sps"
+
+####################################################################################################
+

@@ -1,0 +1,6 @@
+// SUNPLUS  S+core IDE generated include file.
+#ifndef HYCU_RESOURCE_H__19895_19718__INCLUDED_
+#define HYCU_RESOURCE_H__19895_19718__INCLUDED_
+
+
+#endif //HYCU_RESOURCE_H__19895_19718__INCLUDED_
